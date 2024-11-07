@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Bitcoinin Kaninkolo</title>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+        }
+        .card {
+            margin: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            background-color: #16213e;
+            color: #e0e0e0;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .btn-custom {
+            background-color: #ff4c29;
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #e94560;
+        }
+        .modal-content {
+            border-radius: 20px;
+            background-color: #16213e;
+            color: #e0e0e0;
+        }
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #0d1b2a;
+            color: #ffffff;
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .welcome-section img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .level-container {
+            margin-top: 40px;
+            text-align: center;
+            padding: 40px;
+            background-color: #16213e;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .sub-level-container {
+            text-align: center;
+            padding: 40px;
+            background-color: #16213e;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            display: none;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e94560;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-item {
+            padding: 20px;
+            position: relative;
+            width: 50%;
+            background-color: inherit;
+        }
+        .timeline-item.left {
+            left: 0;
+        }
+        .timeline-item.right {
+            left: 50%;
+        }
+        .timeline-item::after {
+            content: ' ';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 15px;
+            right: -10px;
+            background-color: #ff4c29;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        .scroll-down {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            cursor: default;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <img src="kaninkolo_bitcoineilla.svg" alt="Kaninkoloon saapuva futuristinen kani">
+        <h1>Tervetuloa Bitcoinin Kaninkoloon!</h1>
+        <p>Astut syvemmälle Bitcoinin maailmaan, yksi taso kerrallaan.</p>
+
+        <!-- Support Section -->
+        <div class="support-section" style="margin-top: 20px; text-align: center;">
+            <p>Ylläpidän tätä sivustoa intohimosta Bitcoiniin. Jos haluat tukea sivuston jatkuvaa kehitystä ja ajantasaisuutta, jokainen kuppi kahvia on suuri apu!</p>
+            <a href="YOUR_BUY_ME_A_COFFEE_LINK" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #ff4c29; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: bold;">
+                Osta minulle kahvi ☕
+            </a>
+        </div>
+
+        <div class="scroll-down">
+            Kaiva alaspäin <br> ⬇️
+        </div>
+    </div>
+
+
+    <!-- Layered Content Section -->
+    <div class="container">
+        <div id="level-container" class="level-container">
+            <!-- Initial Level Content (Taso 1) -->
+	<h3>Tervetuloa: Tutustu Bitcoinin Maailmaan</h3>
+	<p>Tervetuloa sivustolle, jossa louhimme tiemme syvälle Bitcoinin kiehtovaan maailmaan. Täältä löydät kaiken oleellisen tiedon 	Bitcoinista aina sen historiasta ja teknologiasta käyttömahdollisuuksiin ja ostotapoihin. Opit myös, miten Bitcoin voi muuttaa talouden 	tulevaisuutta.</p>
+	<div class="secret" onclick="this.classList.toggle('revealed');">Tiesitkö? Bitcoinin mystinen luoja, Satoshi Nakamoto, katosi julkisuudesta vuonna 	2010, ja hänen henkilöllisyytensä on edelleen arvoitus.</div>
+
+            <button class="btn btn-custom mt-3" onclick="navigateToNextLevel('taso1')">Jatka Seuraavalle Tasolle</button>
+        </div>
+
+        <div id="sub-level-container" class="sub-level-container">
+            <!-- Sub-levels will be dynamically added here -->
+        </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLevelContent('taso1');
+        });
+
+        function navigateToNextLevel(nextLevelId) {
+            let levelData = {
+	'taso1': {
+   	 title: 'Taso 1: Bitcoinin Perustiedot',
+   	 content: 'Bitcoin on maailman ensimmäinen ja tunnetuin kryptovaluutta, joka perustuu hajautettuun lohkoketjuteknologiaan. Se mahdollistaa vertaisverkossa tapahtuvat siirrot ilman keskitettyä hallintoa, kuten pankkeja tai valtioita.',
+   	 next: 'taso2',
+   	 prev: null,
+subLevels: [
+    {
+        id: 'taso1.1',
+        title: 'Bitcoinin Historia',
+        content: `
+            <h4>Bitcoinin Varhaisvaiheet</h4>
+            <p>Bitcoinin historia alkaa salaperäisen Satoshi Nakamoton julkaisusta vuonna 2008. Nakamoto, jonka oikea henkilöllisyys on yhä mysteeri, julkaisi asiakirjan nimeltä "Bitcoin: A Peer-to-Peer Electronic Cash System." Tässä julkaisussa hän esitti vision uudesta, vallankumouksellisesta tavasta siirtää arvoa: sähköisestä valuutasta, joka ei tarvitse pankkeja tai keskitettyjä auktoriteetteja rahansiirtojen varmistamiseen. Tästä lähtien alkoi uusi aikakausi rahan käsitteessä.<p>
+
+<p>Ensimmäinen Bitcoin-lohko, "genesis block," luotiin 3. tammikuuta 2009, ja se merkitsi Bitcoinin virallista alkua. Ensimmäinen tunnettu transaktio tapahtui pian tämän jälkeen, kun Satoshi itse lähetti 10 bitcoinia kryptografi Hal Finneylle. Tämä ei ollut vielä kaupallinen transaktio, mutta symboloi uuden teknologian käytön mahdollisuuksia.<p>
+
+<p>Bitcoin sai lisää huomiota vuonna 2010, kun ohjelmoija Laszlo Hanyecz osti kaksi pizzaa 10 000 bitcoinilla. Tämä oli ensimmäinen dokumentoitu kaupallinen ostos, ja siitä on sittemmin tullut legendaarinen tapahtuma kryptovaluuttayhteisössä. Pizzaostoksesta lähtien Bitcoinin arvo alkoi hitaasti nousta, ja sitä alettiin nähdä mahdollisena sijoituskohteena.<p>
+
+<p>2010-luvulla Bitcoin koki suuria hinnanvaihteluita ja keräsi yhä enemmän huomiota myös mediassa. Vuonna 2013 sen arvo ylitti ensimmäisen kerran 1000 dollaria. Tämän jälkeen Bitcoinin suosio ja hinta jatkoivat kasvuaan. Vuonna 2017 Bitcoin saavutti 20 000 dollarin hinnan ensimmäistä kertaa, mikä toi sen laajan yleisön tietoisuuteen ja synnytti uutta keskustelua kryptovaluuttojen roolista taloudessa.<p>
+
+<p>Matka jatkui, ja vuonna 2021 Bitcoin saavutti jälleen uuden ennätyksen, yli 60 000 dollarin arvon. Tässä vaiheessa Bitcoin oli saanut jalansijaa institutionaalisten sijoittajien, kuten suurten rahoituslaitosten ja julkisten yritysten, portfoliossa. Tämä vaihe nosti Bitcoinin pysyvästi sijoitusmarkkinoiden ytimeen ja vahvisti sen asemaa "digitaalisena kultana."<p>
+
+<p>Bitcoinin historia on täynnä arvaamattomia nousuja ja laskuja, mutta siitä on tullut merkittävä osa rahoitusjärjestelmää ja maailmanlaajuista taloutta.</p>
+        `
+    }
+
+]
+
+	},
+'taso2': {
+    title: 'Taso 2: Bitcoinin Teknologia',
+    content: 'Bitcoinin lohkoketju on hajautettu tietokanta, jossa kaikki transaktiot tallennetaan julkisesti. Lohkoketju varmistaa tiedon luotettavuuden ja estää väärinkäytöksiä.',
+    next: 'taso3',
+    prev: 'taso1',
+    subLevels: [
+        {
+            id: 'taso2.1',
+            title: 'Lohkoketjuteknologia',
+            content: `
+                <h4>Mikä on Lohkoketju?</h4>
+                <p>Lohkoketjuteknologia on Bitcoinin ydin, jonka avulla siirrot voidaan kirjata turvallisesti ja läpinäkyvästi ilman keskitettyä hallintoa. Lohkoketju on kuin julkinen tilikirja, johon kaikki transaktiot kirjataan ja jota ylläpidetään hajautetusti eri tietokoneiden välillä.</p>
+                
+                <p>Jokainen lohko sisältää useita transaktioita ja on kryptografisesti yhteydessä edelliseen lohkoon, muodostaen pitkän ketjun. Tämä rakenne estää tietojen muuttamisen jälkikäteen ja tekee Bitcoinin verkosta erittäin turvallisen.</p>
+
+                <h4>Kuinka Lohkoketju Toimii?</h4>
+                <p>Koska lohkoketju on hajautettu, kaikki verkon osallistujat (solmut) hallinnoivat ja tarkistavat siirrot yhdessä. Kun uusi transaktio tapahtuu, se lisätään uuteen lohkoon. Lohkojen ketjuun liittämisen jälkeen niitä ei voi muuttaa ilman, että koko ketju tunnistaa muutoksen. Tämä tekee väärentämisestä käytännössä mahdotonta.</p>
+
+                <p>Transaktioiden turvallisuuden varmistamiseksi käytetään kryptografisia algoritmeja, jotka vaativat laskennallisesti paljon resursseja. Louhijat (miners) osallistuvat tähän prosessiin ja saavat palkkiona uusia bitcoineja. Tämä mekanismi, jota kutsutaan proof-of-workiksi, tekee verkon ylläpidosta ja suojauksesta tehokasta.</p>
+
+                <h4>Lohkoketjun Hyödyt ja Haitat</h4>
+                <p>Lohkoketjuteknologia mahdollistaa luotettavan, muuttumattoman ja hajautetun tietokannan ilman välikäsiä. Tämä vähentää taloudellisia esteitä ja tekee tiedosta helpommin saavutettavaa. Lohkoketjun suurimpiin hyötyihin kuuluu se, että se luo läpinäkyvän järjestelmän, joka vähentää väärinkäytösten mahdollisuuksia.</p>
+
+                <p>Kuitenkin hajautettu tietokanta vaatii paljon laskentatehoa, mikä tarkoittaa, että lohkoketjujen ylläpito, erityisesti proof-of-work -järjestelmissä, kuluttaa runsaasti energiaa. Tämä ympäristövaikutus on yksi teknologian suurista haasteista, joka on herättänyt paljon keskustelua.</p>
+
+                <p>Bitcoinin lohkoketju on ensimmäinen laajasti tunnettu ja käytössä oleva lohkoketju, mutta samaa teknologiaa on alettu soveltaa myös muissa järjestelmissä, kuten älykkäissä sopimuksissa ja toimitusketjujen hallinnassa.</p>
+            `
+        }
+    ]
+},
+
+'taso3': {
+    title: 'Taso 3: Bitcoinin Käyttömahdollisuudet',
+    content: 'Bitcoinia voi käyttää maksuvälineenä monissa eri paikoissa ympäri maailmaa. Se tarjoaa nopean ja edullisen tavan suorittaa maksuja ilman välikäsiä.',
+    next: 'taso4',
+    prev: 'taso2',
+    subLevels: [
+        {
+            id: 'taso3.1',
+            title: 'Maksuvälineenä',
+            content: `
+                <h4>Bitcoin Kaupankäynnissä</h4>
+                <p>Bitcoinin käyttö maksuvälineenä on yleistynyt merkittävästi viime vuosina. Monet yritykset, kuten verkkokaupat, ravintolat ja hotellit, hyväksyvät Bitcoinin maksutapana. Bitcoinin avulla käyttäjät voivat suorittaa maksuja ilman välikäsiä, mikä tekee siitä houkuttelevan vaihtoehdon perinteisille maksutavoille.</p>
+                
+                <h4>Bitcoin Kansainvälisissä Maksuissa</h4>
+                <p>Yksi Bitcoinin suurista eduista on sen käyttömahdollisuudet kansainvälisissä siirroissa. Toisin kuin perinteiset pankkisiirrot, jotka voivat kestää useita päiviä ja vaatia korkeita maksuja, Bitcoin-tapahtumat voivat tapahtua nopeasti ja usein alhaisemmilla kuluilla. Tämä tekee siitä erityisen hyödyllisen rajat ylittävässä kaupankäynnissä ja siirtotyökaluna, erityisesti maissa, joissa pankkipalvelut ovat rajalliset.</p>
+
+                <h4>Bitcoin Sijoituskohteena</h4>
+                <p>Vaikka Bitcoin on ensisijaisesti digitaalinen valuutta, monet näkevät sen myös sijoituskohteena, erityisesti sen arvo-ominaisuuksien vuoksi. Bitcoinin rajoitettu tarjonta, joka on rajattu 21 miljoonaan yksikköön, on saanut monet sijoittajat kiinnostumaan siitä "digitaalisena kultana". Sijoittajat uskovat, että Bitcoin voi toimia inflaatiosuojana ja arvon säilyttäjänä, erityisesti taloudellisesti epävarmoina aikoina.</p>
+
+                <h4>Bitcoinin Hyödyt ja Haasteet Maksuvälineenä</h4>
+                <p>Bitcoinin etuja maksuvälineenä ovat sen hajautettu rakenne ja transaktioiden nopeus, erityisesti kansainvälisissä siirroissa. Tämä tekee siitä houkuttelevan vaihtoehdon perinteisille maksutavoille, jotka voivat olla hitaampia ja kalliimpia.</p>
+
+                <p>Toisaalta Bitcoinin käytössä maksuvälineenä on myös haasteita. Sen arvo vaihtelee huomattavasti, mikä voi tehdä hintojen määrittämisestä hankalaa sekä yrityksille että kuluttajille. Lisäksi tapahtumien lopullisuus ja pseudonyymiys voivat tuoda juridisia ja sääntelyyn liittyviä kysymyksiä, erityisesti valtioissa, joissa kryptovaluuttoja säädellään tarkasti.</p>
+
+                <p>Bitcoinin käyttökohteet kehittyvät jatkuvasti, ja sen rooli maksuvälineenä sekä sijoituskohteena tulee todennäköisesti kasvamaan tulevaisuudessa.</p>
+            `
+        }
+    ]
+},
+'taso4': {
+    title: 'Taso 4: Bitcoinin Sääntely ja Turvallisuus',
+    content: 'Bitcoinin sääntely vaihtelee maittain. Joissakin maissa Bitcoin on hyväksytty lailliseksi maksuvälineeksi, kun taas toisissa sen käyttöä on rajoitettu.',
+    next: 'taso5',
+    prev: 'taso3',
+    subLevels: [
+        {
+            id: 'taso4.1',
+            title: 'Sääntelyn Historia',
+            content: `
+                <h4>Bitcoinin Sääntelyn Kehitys</h4>
+                <p>Bitcoinin sääntelyhistoria alkoi melko vapaana, sillä monet hallitukset eivät aluksi tunnistaneet sitä merkittäväksi taloudelliseksi tekijäksi. Bitcoinin kasvaessa tunnetuksi ja sen arvon noustessa monet maat alkoivat kuitenkin kehittää sääntelyä sen ympärille. Sääntely on vaihdellut huomattavasti eri maissa: joissakin Bitcoinin käyttö on täysin laillista, kun taas toisissa sen käyttöä on rajoitettu tai jopa kielletty.</p>
+
+                <h4>Sääntelyyn Vaikuttavat Tekijät</h4>
+                <p>Bitcoinin sääntelyä ohjaavat monet tekijät, kuten käyttäjien suojaaminen, verotuskysymykset ja pyrkimykset estää rahanpesua sekä muita laittomia toimia. Joissakin maissa, kuten Japanissa, Bitcoin on hyväksytty viralliseksi maksuvälineeksi, ja sääntely on selkeää. Toisissa maissa, kuten Kiinassa, Bitcoinin käyttö on kielletty, ja sen kaivostoiminta on rajoitettu ympäristösyistä ja taloudellisen vakauden vuoksi.</p>
+
+                <h4>Sääntelyn Kehitys Tulevaisuudessa</h4>
+                <p>Bitcoinin sääntelyn tulevaisuus on yhä epävarma ja vaihtelee suuresti maakohtaisesti. Yhä useammat valtiot kehittävät lakeja ja sääntöjä kryptovaluuttojen käytölle ja kaupankäynnille, mikä tuo vakautta mutta voi myös asettaa rajoituksia. Euroopan unionissa kehitetään kryptovaluuttoja koskevaa lainsäädäntöä, joka voi muokata merkittävästi markkinoita.</p>
+
+                <h4>Turvallisuus ja Riskit</h4>
+                <p>Bitcoinin turvallisuus perustuu sen hajautettuun verkkoon ja lohkoketjun muuttumattomuuteen, mikä tekee sen manipuloinnista erittäin vaikeaa. Kuitenkin Bitcoinin arvo on epävakaa, ja sijoittajille on olemassa suuria riskejä hinnanvaihtelujen vuoksi. Lisäksi käyttäjät ovat vastuussa omien varojensa suojaamisesta, ja menetetyt yksityiset avaimet voivat johtaa pysyviin rahojen menetyksiin.</p>
+
+                <h4>Hakkerointi ja Petokset</h4>
+                <p>Kryptovaluuttoihin liittyvät hakkeroinnit ja petokset ovat haaste, joka vaatii käyttäjiltä varovaisuutta. Erityisesti vaihtopalvelut, joissa bitcoineja säilytetään keskitetysti, ovat olleet hakkerien kohteina. Tämä tekee turvallisista lompakko- ja säilytysratkaisuista erittäin tärkeitä. Myös käyttäjien on hyvä olla tietoisia yleisistä huijauksista ja säilyttää yksityiset avaimensa turvassa.</p>
+            `
+        }
+    ]
+},
+'taso5': {
+    title: 'Taso 5: Bitcoinin Tulevaisuus',
+    content: 'Bitcoinin tulevaisuus näyttää lupaavalta, ja monet uskovat sen olevan tulevaisuuden arvonsäilyttäjä ja maksuväline. Uudet teknologiat, kuten Lightning Network, voivat parantaa sen käytettävyyttä entisestään.',
+    next: 'taso6',
+    prev: 'taso4',
+    subLevels: [
+        {
+            id: 'taso5.1',
+            title: 'Tulevaisuuden Teknologiat ja Parannukset',
+            content: `
+                <h4>Lightning Network</h4>
+                <p>Lightning Network on toisen kerroksen ratkaisu, joka on suunniteltu parantamaan Bitcoinin skaalautuvuutta ja transaktionopeutta. Sen avulla käyttäjät voivat suorittaa lähes välittömiä ja edullisia maksuja ilman, että jokainen tapahtuma tarvitsee tallentaa suoraan Bitcoinin lohkoketjuun. Tämä teknologia voisi mahdollistaa Bitcoinin käytön arkisessa maksuliikenteessä ja auttaa sitä kilpailemaan perinteisten maksujärjestelmien kanssa.</p>
+
+                <h4>Bitcoinin Sääntelyn Kehitys</h4>
+                <p>Sääntely tulee olemaan merkittävä tekijä Bitcoinin tulevaisuudessa. Monet valtiot pohtivat, miten suhtautua kryptovaluuttoihin, ja uusi lainsäädäntö voi tuoda lisää vakautta ja hyväksyntää Bitcoinille, mutta se voi myös asettaa rajoituksia. Yhdysvaltojen ja Euroopan unionin kaltaisissa suurissa talouksissa suunnitellaan sääntelykehystä, joka voi muokata kryptomarkkinoiden tulevaisuutta merkittävästi.</p>
+
+                <h4>Institutionaalinen Hyväksyntä</h4>
+                <p>Yhä useammat institutionaaliset sijoittajat, kuten pankit ja suuret yritykset, ovat alkaneet ottaa Bitcoinin osaksi sijoitusportfoliotaan. Tämä institutionaalinen hyväksyntä voi lisätä Bitcoinin vakautta ja arvostusta, ja monien mielestä se on merkki Bitcoinin asemasta "digitaalisena kultana". Tämän trendin jatkuessa Bitcoinin rooli globaalissa taloudessa voi edelleen vahvistua.</p>
+
+                <h4>Kilpailu ja Teknologian Kehitys</h4>
+                <p>Bitcoinilla on myös kilpailijoita, ja uusia kryptovaluuttoja ja teknologioita kehitetään jatkuvasti. Esimerkiksi älysopimuksia tukevat lohkoketjut, kuten Ethereum, tarjoavat ominaisuuksia, joita Bitcoinin peruslohkoketjussa ei ole. Bitcoinin kehittäjäyhteisö pyrkii kuitenkin parantamaan järjestelmää jatkuvasti, ja tulevat tekniset päivitykset voivat auttaa Bitcoinia säilyttämään asemansa johtavana kryptovaluuttana.</p>
+
+                <h4>Bitcoinin Rooli Taloudellisena Turvasatamana</h4>
+                <p>Monet uskovat, että Bitcoinista voi tulla eräänlainen digitaalinen turvasatama, kuten kulta on perinteisesti ollut. Taloudellisina epävarmuuden aikoina, jolloin inflaatio kasvaa ja fiat-valuutat menettävät arvoaan, Bitcoin voi toimia arvon säilyttäjänä. Tämä ajatus "digitaalisesta kullasta" houkuttelee sijoittajia, jotka etsivät vaihtoehtoja perinteisille sijoituskohteille.</p>
+
+                <p>Bitcoinin tulevaisuus on täynnä mahdollisuuksia, mutta myös haasteita. Teknologian kehittyessä ja sääntelyn selkiytyessä se voi vahvistaa asemaansa sekä digitaalisena valuuttana että arvonsäilyttäjänä.</p>
+            `
+        }
+    ]
+},
+'taso6': {
+    title: 'Taso 6: Bitcoinin Louhinta ja Energia',
+    content: 'Bitcoin-louhinta on prosessi, jossa lohkoketjuun lisätään uusia lohkoja ratkomalla matemaattisia pulmia. Louhinta vaatii paljon energiaa, mutta monet louhintafarmit käyttävät uusiutuvaa energiaa.',
+    next: 'taso7',
+    prev: 'taso5',
+    subLevels: [
+        {
+            id: 'taso6.1',
+            title: 'Louhinnan Prosessi ja Energiankulutus',
+            content: `
+                <h4>Miten Louhinta Toimii?</h4>
+                <p>Bitcoin-louhinta on prosessi, jossa tietokoneet kilpailevat monimutkaisten matemaattisten ongelmien ratkaisemisessa. Kun ongelma ratkaistaan, uusi lohko lisätään lohkoketjuun ja onnistunut louhija saa palkkioksi uusia bitcoineja. Tämä mekanismi, jota kutsutaan nimellä proof-of-work, takaa verkon turvallisuuden ja estää väärinkäytökset.</p>
+
+                <h4>Louhinnan Merkitys Lohkoketjulle</h4>
+                <p>Louhinta on elintärkeä Bitcoinin toiminnalle, koska se ylläpitää lohkoketjun eheyttä ja luo uusia bitcoineja kiertoon. Louhinnan ansiosta Bitcoin on hajautettu ja turvallinen, sillä jokainen lohko varmistetaan lukemattomien osallistujien toimesta ympäri maailman.</p>
+
+                <h4>Energiankulutus ja Ympäristövaikutukset</h4>
+                <p>Bitcoinin louhinta vaatii huomattavasti energiaa, sillä proof-of-work -protokolla edellyttää suurta laskentatehoa. Tämä energiankulutus on saanut osakseen kritiikkiä, sillä se voi olla verrattavissa pienten valtioiden energiankulutukseen. Louhintakustannukset kasvavat, kun kilpailu louhintapalkkioista kovenee ja laitteiden tehovaatimukset kasvavat.</p>
+
+                <p>Kriitikoiden mukaan Bitcoinin louhinta aiheuttaa merkittäviä ympäristövaikutuksia, etenkin jos louhintaa suoritetaan alueilla, joissa käytetään fossiilisia polttoaineita. Positiivista on kuitenkin se, että monet louhintafarmit pyrkivät käyttämään uusiutuvaa energiaa, kuten vesivoimaa ja tuulivoimaa, pienentääkseen ympäristövaikutuksia. Joillain alueilla, kuten Pohjoismaissa, louhintafarmit hyödyntävät kylmää ilmastoa ja uusiutuvia energialähteitä tehokkaasti.</p>
+
+                <h4>Tulevaisuuden Louhintateknologiat</h4>
+                <p>Bitcoin-yhteisössä tutkitaan jatkuvasti uusia tapoja vähentää louhinnan energiankulutusta. Tulevaisuuden innovaatiot voivat mahdollistaa energiatehokkaampia tapoja ylläpitää verkkoa, ja kehitteillä on useita ratkaisuja, jotka voivat pienentää louhinnan ympäristövaikutuksia. Tällaisia teknologioita ovat esimerkiksi erilaiset energian optimointistrategiat ja hiilijalanjäljen pienentämiseen keskittyvät hankkeet.</p>
+
+                <p>Yhä useammat valtiot harkitsevat sääntelytoimia Bitcoin-louhinnan ympäristövaikutusten vuoksi. Tämä voi johtaa uusiin sääntöihin, jotka edellyttävät louhintafarmeilta ympäristöystävällisempiä energianlähteitä. Näin ollen Bitcoinin louhinta voi tulevaisuudessa olla entistä ympäristöystävällisempää ja kestävämpää.</p>
+            `
+        }
+    ]
+},
+
+'taso7': {
+    title: 'Taso 7: Bitcoinin Yhteisö ja Kulttuuri',
+    content: 'Bitcoinin ympärille on syntynyt globaali yhteisö, joka edistää sen käyttöönottoa ja kehitystä. Yhteisö koostuu kehittäjistä, sijoittajista ja kannattajista, jotka jakavat uskon hajautettuun talouteen.',
+    next: 'taso8',
+    prev: 'taso6',
+    subLevels: [
+        {
+            id: 'taso7.1',
+            title: 'Bitcoinin Yhteisö ja Sen Rooli',
+            content: `
+                <h4>Globaalin Yhteisön Voima</h4>
+                <p>Bitcoinin ympärille on kasvanut vahva ja sitoutunut globaali yhteisö, joka tukee sen kehitystä ja käyttöä. Tämä yhteisö koostuu kehittäjistä, jotka työskentelevät Bitcoin-protokollan parissa, sekä sijoittajista ja tavallisista käyttäjistä, jotka uskovat hajautettuun talouteen ja finanssijärjestelmään.</p>
+
+                <h4>Hajautetun Kehityksen Merkitys</h4>
+                <p>Bitcoinin kehitys perustuu avoimen lähdekoodin malliin, jossa kuka tahansa voi osallistua ja tehdä ehdotuksia protokollan parantamiseksi. Tämä kehitysmalli on tehnyt Bitcoinista erittäin turvallisen ja joustavan, sillä päätöksiä ei tehdä yhden keskitetyn toimijan toimesta, vaan yhteisön keskuudessa. Hajautetun kehityksen ansiosta Bitcoin voi sopeutua käyttäjien tarpeisiin ja teknologisiin muutoksiin.</p>
+
+                <h4>Bitcoinin Kulttuuri ja Ideologia</h4>
+                <p>Bitcoinin ympärille on muodostunut erityinen kulttuuri ja ideologia, jossa korostuvat taloudellinen vapaus, yksityisyys ja usko hajautettuihin rakenteisiin. Bitcoin-kannattajat arvostavat erityisesti sitä, että Bitcoin ei ole minkään valtion tai keskuspankin hallinnassa. He näkevät Bitcoinin vaihtoehtona perinteiselle finanssijärjestelmälle ja keinona saavuttaa taloudellinen riippumattomuus.</p>
+
+                <h4>Yhteisön Haasteet ja Tulevaisuus</h4>
+                <p>Vaikka Bitcoin-yhteisö on vahva ja omistautunut, se kohtaa myös haasteita, kuten sääntelyn tuomat uhat ja teknologiset haasteet, jotka voivat vaikuttaa Bitcoinin käyttöön ja hyväksyntään. Yhteisö kuitenkin jatkaa innovointia ja kehitystä, ja monet uskovat, että Bitcoin tulee kasvamaan entisestään tulevaisuudessa. Bitcoinin yhteisö on osoittanut vahvaa kykyä sopeutua muuttuviin olosuhteisiin ja rakentaa pohjaa kestävälle, hajautetulle taloudelle.</p>
+            `
+        }
+    ]
+},
+'taso8': {
+    title: 'Taso 8: Bitcoinin Teknologiset Innovaatiot',
+    content: 'Lightning Network on toisen kerroksen ratkaisu, joka mahdollistaa nopeat ja halvat Bitcoin-transaktiot. Se pyrkii ratkaisemaan Bitcoinin skaalautuvuusongelmat ja parantamaan käyttökokemusta.',
+    next: 'taso9',
+    prev: 'taso7',
+    subLevels: [
+        {
+            id: 'taso8.1',
+            title: 'Lightning Network ja Muut Innovaatiot',
+            content: `
+                <h4>Lightning Networkin Merkitys</h4>
+                <p>Lightning Network on toisen kerroksen ratkaisu, joka luotiin parantamaan Bitcoinin transaktionopeutta ja vähentämään siirtokustannuksia. Sen avulla käyttäjät voivat suorittaa lähes välittömiä ja edullisia siirtoja luomalla maksukanavia, joissa transaktiot tapahtuvat ilman, että niitä lisätään suoraan Bitcoinin lohkoketjuun. Tämä teknologia voi merkittävästi parantaa Bitcoinin käytettävyyttä arjen maksuvälineenä.</p>
+
+                <h4>Muut Skaalautuvuusratkaisut</h4>
+                <p>Lightning Networkin lisäksi kehitetään muita skaalautuvuusratkaisuja, joiden tarkoitus on mahdollistaa suurempi määrä transaktioita ilman, että Bitcoin-verkon turvallisuus heikkenee. Näihin ratkaisuihin kuuluvat esimerkiksi Segregated Witness (SegWit) ja Taproot, jotka parantavat lohkoketjun tehokkuutta ja yksityisyyttä.</p>
+
+                <h4>Taproot ja Yksityisyyden Parantaminen</h4>
+                <p>Taproot on Bitcoinin lohkoketjuun vuonna 2021 lisätty päivitys, joka mahdollistaa monimutkaisten transaktioiden tehokkaamman ja yksityisemmän käsittelyn. Taproot yhdistää transaktiot yhdeksi helpommin hallittavaksi kokonaisuudeksi, mikä parantaa sekä yksityisyyttä että tehokkuutta. Tämä päivitys on tärkeä askel kohti Bitcoinin teknistä kehitystä ja vastaa kasvaviin vaatimuksiin yksityisyydestä ja skaalautuvuudesta.</p>
+
+                <h4>Bitcoinin Tulevaisuuden Innovaatioiden Suunta</h4>
+                <p>Bitcoin-yhteisö pyrkii jatkuvasti kehittämään uusia teknologioita, jotka voivat parantaa Bitcoinin suorituskykyä, yksityisyyttä ja käytettävyyttä. Tulevaisuudessa saatetaan nähdä lisää innovaatioita, jotka tekevät Bitcoinista entistä paremman vaihtoehdon sekä maksuvälineenä että arvonsäilyttäjänä. Kehitys on keskeinen osa Bitcoinin pitkän aikavälin menestystä, ja yhteisö on sitoutunut ratkaisemaan sen haasteita.</p>
+            `
+        }
+    ]
+},
+'taso9': {
+    title: 'Taso 9: Bitcoinin Ostaminen',
+    content: 'Bitcoinin hankkiminen on nykyään helpompaa kuin koskaan. Suomessa on useita luotettavia kryptovaluuttapörssejä, jotka tarjoavat palveluita suomeksi ja mahdollistavat euroilla maksamisen. Lisäksi kansainväliset pörssit, kuten Binance, ovat suosittuja suomalaisten keskuudessa.',
+    next: null,
+    prev: 'taso8',
+    subLevels: [
+        {
+            id: 'taso9.1',
+            title: 'Miten ja Mistä Ostaa Bitcoinia',
+            content: `
+                <h4>Suomalaiset Kryptovaluuttapörssit</h4>
+                <p><strong>Coinmotion</strong>: Coinmotion on suomalainen kryptovaluuttapörssi, joka tarjoaa helppokäyttöisen alustan Bitcoinin ja muiden kryptovaluuttojen ostamiseen, myymiseen ja säilyttämiseen. Palvelu on Finanssivalvonnan alaisuudessa, mikä lisää sen luotettavuutta. Voit avata tilin ja aloittaa kaupankäynnin nopeasti.</p>
+                <p><a href="YOUR_COINMOTION_REFERRAL_LINK">Avaa tili Coinmotionissa</a></p>
+
+                <p><strong>Northcrypto</strong>: Northcrypto on toinen suomalainen kryptovaluuttapörssi, joka keskittyy tarjoamaan yksinkertaisen ja turvallisen tavan ostaa ja myydä kryptovaluuttoja. Palvelu on myös Finanssivalvonnan rekisteröimä, ja se tarjoaa kilpailukykyiset kaupankäyntikulut.</p>
+                <p><a href="YOUR_NORTHCRYPTO_REFERRAL_LINK">Rekisteröidy Northcryptoon</a></p>
+
+                <h4>Kansainväliset Kryptovaluuttapörssit</h4>
+                <p><strong>Binance</strong>: Binance on maailmanlaajuisesti tunnettu kryptovaluuttapörssi, joka tarjoaa laajan valikoiman kryptovaluuttoja ja edistyneitä kaupankäyntiominaisuuksia. Vaikka se on kansainvälinen toimija, se on suosittu myös suomalaisten käyttäjien keskuudessa. Binance tarjoaa kilpailukykyiset kaupankäyntikulut ja monipuoliset palvelut.</p>
+                <p><a href="YOUR_BINANCE_REFERRAL_LINK">Liity Binancen käyttäjäksi</a></p>
+
+                <h4>Bitcoinin Ostamisen Vaiheet</h4>
+                <p><strong>1. Tilin Avaaminen</strong>: Valitse haluamasi kryptovaluuttapörssi ja avaa tili. Tämä edellyttää yleensä henkilöllisyyden vahvistamista esimerkiksi pankkitunnuksilla.</p>
+
+                <p><strong>2. Varojen Talletus</strong>: Siirrä euroja pörssin tilille käyttämällä pankkisiirtoa tai maksukorttia. Huomioi mahdolliset talletuskulut ja -ajat.</p>
+
+                <p><strong>3. Bitcoinin Ostaminen</strong>: Kun varat ovat saapuneet tilillesi, voit tehdä osto- tai myyntitoimeksiannon haluamallesi summalle. Pörssit tarjoavat yleensä reaaliaikaiset kurssit ja helppokäyttöiset käyttöliittymät.</p>
+
+                <p><strong>4. Bitcoinin Säilyttäminen</strong>: Voit säilyttää bitcoinejasi pörssin tarjoamassa lompakossa tai siirtää ne omaan ulkoiseen lompakkoon turvallisuuden lisäämiseksi. On suositeltavaa käyttää kylmälompakoita suurten summien säilyttämiseen.</p>
+
+                <h4>Turvallisuusvinkkejä Bitcoinin Ostamiseen</h4>
+                <p><strong>Valitse Luotettava Pörssi</strong>: Varmista, että valitsemasi pörssi on tunnettu ja sillä on hyvä maine. Tarkista, että pörssi on rekisteröity ja säännelty asianmukaisesti.</p>
+
+                <p><strong>Käytä Kaksivaiheista Tunnistautumista</strong>: Ota käyttöön kaksivaiheinen tunnistautuminen (2FA) tilisi suojaamiseksi. Tämä lisää ylimääräisen turvakerroksen kirjautumisprosessiin.</p>
+
+                <p><strong>Säilytä Varasi Turvallisesti</strong>: Pidä suurin osa varoistasi offline-lompakossa (kylmälompakko) ja vain pieni osa pörssin lompakossa kaupankäyntiä varten. Tämä vähentää riskiä varojen menettämisestä mahdollisen hakkeroinnin yhteydessä.</p>
+
+                <p><strong>Ole Varovainen Huijausten Kanssa</strong>: Vältä epäilyttäviä tarjouksia ja varmista aina, että käytät virallisia sivustoja ja sovelluksia. Älä jaa henkilökohtaisia tietojasi tai yksityisiä avaimiasi kenellekään.</p>
+            `
+        }
+    ]
+},
+
+
+            };
+
+            const level = levelData[nextLevelId];
+            const levelContainer = document.getElementById('level-container');
+            levelContainer.innerHTML = `
+                <h3>${level.title}</h3>
+                <p>${level.content}</p>
+                ${level.prev ? `<button class="btn btn-custom mt-3" onclick="navigateToNextLevel('${level.prev}')">Palaa Edelliseen Tasoon</button>` : ''}
+                ${level.next ? `<button class="btn btn-custom mt-3" onclick="navigateToNextLevel('${level.next}')">Jatka Seuraavalle Tasolle</button>` : ''}
+            `;
+
+            // Add sub-level cards
+            const subLevelContainer = document.getElementById('sub-level-container');
+            subLevelContainer.innerHTML = '';
+            if (level.subLevels && level.subLevels.length > 0) {
+                let currentSubLevelIndex = 0;
+                showSubLevel(currentSubLevelIndex, level.subLevels);
+            } else {
+                subLevelContainer.style.display = 'none';
+            }
+        }
+
+function showSubLevel(index, subLevels) {
+    const subLevelContainer = document.getElementById('sub-level-container');
+    subLevelContainer.style.display = 'block';
+
+    // Valitaan oikea taso annetun indeksin perusteella
+    const subLevel = subLevels[index];
+
+    // Asetetaan HTML-sisältö ilman card-diviä
+    subLevelContainer.innerHTML = `
+        <h4>${subLevel.title}</h4>
+        <p>${subLevel.content}</p>
+    `;
+}
+
+
+
+    </script>
+
+    <footer style="text-align: center; padding: 20px; background-color: #16213e; color: #e0e0e0;">
+        <p>&copy; 2024 Bitcoinin Kaninkolo. Kaikki oikeudet pidätetään.</p>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+            <!-- Timeline Section (Extended) -->
+            <div class="container">
+                <h3 class="text-center my-5">Bitcoinin Historia</h3>
+                <div class="timeline">
+                    <!-- Full Timeline Events -->
+                    <div class="timeline-item left" style="top: 0%;">
+                        <div class="timeline-content">
+                            <h6>31. lokakuuta 2008</h6>
+                            <p>Satoshi Nakamoto julkaisee Bitcoinin white paperin "Bitcoin: A Peer-to-Peer Electronic Cash System" kryptografian sähköpostilistalla.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 5%;">
+                        <div class="timeline-content">
+                            <h6>3. tammikuuta 2009</h6>
+                            <p>Genesis Block (lohko 0) louhitaan. Lohkon sisältämä viesti: "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks" viittaa pankkikriisiin.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 10%;">
+                        <div class="timeline-content">
+                            <h6>9. tammikuuta 2009</h6>
+                            <p>Bitcoinin ensimmäinen versio (v0.1) julkaistaan SourceForge-alustalla.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 15%;">
+                        <div class="timeline-content">
+                            <h6>12. tammikuuta 2009</h6>
+                            <p>Ensimmäinen Bitcoin-transaktio; Satoshi Nakamoto lähettää 10 BTC Hal Finneylle.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 20%;">
+                        <div class="timeline-content">
+                            <h6>6. helmikuuta 2010</h6>
+                            <p>Bitcoin Market -niminen ensimmäinen Bitcoin-pörssi avataan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left" style="top: 30%;">
+                        <div class="timeline-content">
+                            <h6>17. heinäkuuta 2010</h6>
+                            <p>Mt. Gox -pörssi perustetaan, josta tulee myöhemmin maailman suurin Bitcoin-pörssi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 35%;">
+                        <div class="timeline-content">
+                            <h6>15. elokuuta 2010</h6>
+                            <p>Tietoturva-aukkoa hyödynnetään; yli 184 miljardia BTC:tä luodaan. Ongelma korjataan ja transaktiot mitätöidään.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 40%;">
+                        <div class="timeline-content">
+                            <h6>9. helmikuuta 2011</h6>
+                            <p>Bitcoin saavuttaa pariteetin Yhdysvaltain dollarin kanssa (1 BTC = 1 USD).</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 45%;">
+                        <div class="timeline-content">
+                            <h6>1. kesäkuuta 2011</h6>
+                            <p>Gawker julkaisee artikkelin Silk Roadista, anonyymistä markkinapaikasta, joka käyttää Bitcoinia; Bitcoin saa laajaa mediahuomiota.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 50%;">
+                        <div class="timeline-content">
+                            <h6>8. kesäkuuta 2011</h6>
+                            <p>Bitcoinin hinta nousee 31 dollariin, mutta romahtaa nopeasti hakkerointien ja epävarmuuden vuoksi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 55%;">
+                        <div class="timeline-content">
+                            <h6>27. syyskuuta 2012</h6>
+                            <p>Bitcoin Foundation perustetaan edistämään Bitcoinin kehitystä ja adoptioita.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 60%;">
+                        <div class="timeline-content">
+                            <h6>28. marraskuuta 2012</h6>
+                            <p>Ensimmäinen lohkopalkkion puolittuminen; palkkio laskee 50 BTC:stä 25 BTC:hen per lohko.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 65%;">
+                        <div class="timeline-content">
+                            <h6>9. helmikuuta 2013</h6>
+                            <p>Coinbase raportoi myyneensä miljoonan dollarin arvosta Bitcoinia yhdessä kuukaudessa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 70%;">
+                        <div class="timeline-content">
+                            <h6>10. huhtikuuta 2013</h6>
+                            <p>Bitcoinin hinta saavuttaa 266 dollaria, mutta romahtaa Mt. Gox -pörssin teknisten ongelmien vuoksi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 75%;">
+                        <div class="timeline-content">
+                            <h6>2. toukokuuta 2013</h6>
+                            <p>BitPay ilmoittaa palvelevansa yli 10 000 kaupallista asiakasta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 80%;">
+                        <div class="timeline-content">
+                            <h6>15. toukokuuta 2013</h6>
+                            <p>US Department of Homeland Security jäädyttää Mt. Goxin varat pankkilisenssin puutteen vuoksi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 85%;">
+                        <div class="timeline-content">
+                            <h6>28. elokuuta 2013</h6>
+                            <p>Federal Judge määrittelee Bitcoinin lailliseksi valuutaksi SEC:n tapauksessa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 90%;">
+                        <div class="timeline-content">
+                            <h6>2. lokakuuta 2013</h6>
+                            <p>FBI sulkee Silk Roadin ja takavarikoi 26 000 BTC:tä.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left" style="top: 100%;">
+                        <div class="timeline-content">
+                            <h6>5. joulukuuta 2013</h6>
+                            <p>Kiinan keskuspankki kieltää finanssilaitoksia käsittelemästä Bitcoin-transaktioita; hinta laskee 20%.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 105%;">
+                        <div class="timeline-content">
+                            <h6>28. helmikuuta 2014</h6>
+                            <p>Mt. Gox hakeutuu konkurssiin; 850 000 BTC:tä katoaa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 110%;">
+                        <div class="timeline-content">
+                            <h6>20. maaliskuuta 2014</h6>
+                            <p>Satoshi Nakamoton oletettu henkilö Craig Wright tulee julkisuuteen, mutta väitteitä epäillään.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 115%;">
+                        <div class="timeline-content">
+                            <h6>18. heinäkuuta 2014</h6>
+                            <p>Dell alkaa hyväksyä Bitcoinia maksutapana.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 120%;">
+                        <div class="timeline-content">
+                            <h6>4. tammikuuta 2015</h6>
+                            <p>Bitstamp ilmoittaa hakkeroinnista; 19 000 BTC:tä varastetaan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 125%;">
+                        <div class="timeline-content">
+                            <h6>5. tammikuuta 2015</h6>
+                            <p>Coinbase avaa ensimmäisen säännellyn Bitcoin-pörssin Yhdysvalloissa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 130%;">
+                        <div class="timeline-content">
+                            <h6>Elokuu 2015</h6>
+                            <p>Mark Karpelès, Mt. Goxin entinen toimitusjohtaja, pidätetään Japanissa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 135%;">
+                        <div class="timeline-content">
+                            <h6>9. heinäkuuta 2016</h6>
+                            <p>Toinen lohkopalkkion puolittuminen; palkkio laskee 25 BTC:stä 12,5 BTC:hen.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 140%;">
+                        <div class="timeline-content">
+                            <h6>2. elokuuta 2016</h6>
+                            <p>Bitfinex-hakkerointi; 120 000 BTC:tä varastetaan, aiheuttaen 72 miljoonan dollarin tappiot.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 145%;">
+                        <div class="timeline-content">
+                            <h6>31. lokakuuta 2016</h6>
+                            <p>Bitcoin täyttää 8 vuotta; sen arvo on noussut merkittävästi alkuajoista.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 150%;">
+                        <div class="timeline-content">
+                            <h6>1. elokuuta 2017</h6>
+                            <p>Bitcoin Cash -hard fork tapahtuu; uusi kryptovaluutta syntyy.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 155%;">
+                        <div class="timeline-content">
+                            <h6>21. elokuuta 2017</h6>
+                            <p>SegWit-päivitys aktivoidaan Bitcoin-verkossa, parantaen skaalautuvuutta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 160%;">
+                        <div class="timeline-content">
+                            <h6>12. lokakuuta 2017</h6>
+                            <p>Bitcoinin hinta ylittää 5 000 dollaria.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 165%;">
+                        <div class="timeline-content">
+                            <h6>28. marraskuuta 2017</h6>
+                            <p>Bitcoin ylittää 10 000 dollarin rajan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 170%;">
+                        <div class="timeline-content">
+                            <h6>17. joulukuuta 2017</h6>
+                            <p>Bitcoin saavuttaa kaikkien aikojen korkeimman arvon, noin 19 783 dollaria.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 175%;">
+                        <div class="timeline-content">
+                            <h6>6. helmikuuta 2018</h6>
+                            <p>Bitcoinin hinta putoaa alle 6 000 dollarin; yli 65% lasku joulukuun huipusta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 180%;">
+                        <div class="timeline-content">
+                            <h6>27. maaliskuuta 2018</h6>
+                            <p>Twitter kieltää kryptovaluuttojen mainonnan alustallaan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 185%;">
+                        <div class="timeline-content">
+                            <h6>14. marraskuuta 2018</h6>
+                            <p>Bitcoinin hinta laskee jyrkästi, aloittaen uuden karhumarkkinan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 190%;">
+                        <div class="timeline-content">
+                            <h6>1. huhtikuuta 2019</h6>
+                            <p>Bitcoinin hinta alkaa toipua pitkästä laskukaudesta.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left" style="top: 200%;">
+                        <div class="timeline-content">
+                            <h6>26. kesäkuuta 2019</h6>
+                            <p>Bitcoinin hinta nousee yli 13 000 dollariin.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 205%;">
+                        <div class="timeline-content">
+                            <h6>11. toukokuuta 2020</h6>
+                            <p>Kolmas lohkopalkkion puolittuminen; palkkio laskee 12,5 BTC:stä 6,25 BTC:hen.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 210%;">
+                        <div class="timeline-content">
+                            <h6>11. elokuuta 2020</h6>
+                            <p>MicroStrategy ilmoittaa ostaneensa 21 454 BTC:tä yrityksen taseeseen.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 215%;">
+                        <div class="timeline-content">
+                            <h6>21. lokakuuta 2020</h6>
+                            <p>PayPal ilmoittaa tukevansa Bitcoinia ja muita kryptovaluuttoja alustallaan.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 220%;">
+                        <div class="timeline-content">
+                            <h6>30. marraskuuta 2020</h6>
+                            <p>Bitcoinin hinta ylittää edellisen kaikkien aikojen korkeimman arvonsa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 225%;">
+                        <div class="timeline-content">
+                            <h6>8. helmikuuta 2021</h6>
+                            <p>Tesla ilmoittaa ostaneensa 1,5 miljardin dollarin arvosta Bitcoinia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 230%;">
+                        <div class="timeline-content">
+                            <h6>13. maaliskuuta 2021</h6>
+                            <p>Bitcoinin hinta ylittää 60 000 dollaria ensimmäistä kertaa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 235%;">
+                        <div class="timeline-content">
+                            <h6>14. huhtikuuta 2021</h6>
+                            <p>Coinbase listautuu Nasdaq-pörssiin; ensimmäinen suuri kryptovaluuttapörssin listautuminen.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 240%;">
+                        <div class="timeline-content">
+                            <h6>18. toukokuuta 2021</h6>
+                            <p>Elon Musk ilmoittaa Teslan keskeyttävän Bitcoin-maksut ympäristöhuolien vuoksi; hinta laskee merkittävästi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 245%;">
+                        <div class="timeline-content">
+                            <h6>7. syyskuuta 2021</h6>
+                            <p>El Salvador ottaa Bitcoinin käyttöön laillisena maksuvälineenä.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 250%;">
+                        <div class="timeline-content">
+                            <h6>10. marraskuuta 2021</h6>
+                            <p>Bitcoin saavuttaa kaikkien aikojen korkeimman arvonsa, noin 68 789 dollaria.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 255%;">
+                        <div class="timeline-content">
+                            <h6>14. marraskuuta 2021</h6>
+                            <p>Taproot-päivitys aktivoidaan, parantaen yksityisyyttä ja älysopimusten toiminnallisuutta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 260%;">
+                        <div class="timeline-content">
+                            <h6>9. toukokuuta 2022</h6>
+                            <p>TerraUSD:n (UST) de-peg aiheuttaa markkinoiden romahtamisen; Bitcoinin hinta laskee jyrkästi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 265%;">
+                        <div class="timeline-content">
+                            <h6>13. kesäkuuta 2022</h6>
+                            <p>Celsius Network jäädyttää kotiutukset; likviditeettikriisi leviää.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 270%;">
+                        <div class="timeline-content">
+                            <h6>5. heinäkuuta 2022</h6>
+                            <p>Voyager Digital hakeutuu konkurssiin.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 275%;">
+                        <div class="timeline-content">
+                            <h6>11. elokuuta 2022</h6>
+                            <p>BlackRock ilmoittaa tarjoavansa Bitcoin-sijoituspalveluja institutionaalisille asiakkaille.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 280%;">
+                        <div class="timeline-content">
+                            <h6>11. marraskuuta 2022</h6>
+                            <p>FTX hakeutuu konkurssiin; Bitcoinin hinta laskee alle 16 000 dollarin.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 285%;">
+                        <div class="timeline-content">
+                            <h6>10. tammikuuta 2023</h6>
+                            <p>Bitcoinin hinta alkaa toipua, ylittäen 20 000 dollaria.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 290%;">
+                        <div class="timeline-content">
+                            <h6>21. helmikuuta 2023</h6>
+                            <p>Bitcoin ylittää 25 000 dollarin rajan ensimmäistä kertaa kuukausiin.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 295%;">
+                        <div class="timeline-content">
+                            <h6>10. huhtikuuta 2023</h6>
+                            <p>Hinta ylittää 30 000 dollaria.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 300%;">
+                        <div class="timeline-content">
+                            <h6>15. kesäkuuta 2023</h6>
+                            <p>SEC nostaa syytteet useita kryptopörssejä vastaan; markkinoilla epävarmuutta.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 305%;">
+                        <div class="timeline-content">
+                            <h6>23. kesäkuuta 2023</h6>
+                            <p>BlackRock hakee spot-Bitcoin ETF:n hyväksyntää.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 310%;">
+                        <div class="timeline-content">
+                            <h6>1. syyskuuta 2023</h6>
+                            <p>Grayscale voittaa oikeusjutun SEC:tä vastaan koskien Bitcoin ETF:n hylkäämistä.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 315%;">
+                        <div class="timeline-content">
+                            <h6>30. syyskuuta 2023</h6>
+                            <p>Useita spot-Bitcoin ETF -hakemuksia odottaa hyväksyntää Yhdysvalloissa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left" style="top: 320%;">
+                        <div class="timeline-content">
+                            <h6>6. tammikuuta 2024</h6>
+                            <p>Bitcoinin hinta ylittää 40 000 dollaria ensimmäistä kertaa sitten vuoden 2021.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right" style="top: 325%;">
+                        <div class="timeline-content">
+                            <h6>20. huhtikuuta 2024</h6>
+                            <p>Neljäs Bitcoinin lohkopalkkion puolittuminen (halving) tapahtuu; palkkio laskee 6,25 BTC:stä 3,125 BTC:hen per lohko.</p>
+                        </div>
+                    </div>
+                    <div class="timeline
+
